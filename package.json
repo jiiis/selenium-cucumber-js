@@ -1,6 +1,6 @@
 {
   "name": "jiiis-selenium-cucumber-js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A fork of selenium-cucumber-js.",
   "main": "index.js",
   "scripts": {
@@ -45,7 +45,6 @@
     "cucumber-html-reporter": "2.0.3",
     "cucumber-junit": "1.6.0",
     "fs-plus": "2.9.1",
-    "geckodriver": "1.10.0",
     "merge": "1.2.0",
     "phantomjs-prebuilt": "2.1.12",
     "require-dir": "0.3.2",
