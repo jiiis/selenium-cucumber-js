@@ -17,7 +17,7 @@ var reporter = require('cucumber-html-reporter');
 var cucumberJunit = require('cucumber-junit');
 
 // drivers
-// var FireFoxDriver = require('./firefoxDriver.js');
+var FireFoxDriver = require('./firefoxDriver.js');
 var PhantomJSDriver = require('./phantomDriver.js');
 var ChromeDriver = require('./chromeDriver');
 
@@ -31,9 +31,9 @@ function getDriverInstance() {
 
     switch (browserName || '') {
 
-        // case 'firefox': {
-        //     driver = new FireFoxDriver();
-        // } break;
+        case 'firefox': {
+            driver = new FireFoxDriver();
+        } break;
 
         case 'phantomjs': {
             driver = new PhantomJSDriver();
