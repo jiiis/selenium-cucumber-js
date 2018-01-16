@@ -31,6 +31,10 @@ function getDriverInstance() {
         var driver;
 
         switch (browserName || '') {
+            case 'ie': {
+                return otherDrivers('internet explorer').then(resolve);
+            }
+
             case 'safari': {
                 return otherDrivers('safari').then(resolve);
             }
