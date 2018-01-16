@@ -17,6 +17,7 @@ var reporter = require('cucumber-html-reporter');
 var cucumberJunit = require('cucumber-junit');
 
 // drivers
+var otherDrivers = require('./otherDrivers.js');
 var FireFoxDriver = require('./firefoxDriver.js');
 var PhantomJSDriver = require('./phantomDriver.js');
 var ChromeDriver = require('./chromeDriver');
@@ -26,35 +27,39 @@ var ChromeDriver = require('./chromeDriver');
  * @returns {ThenableWebDriver} selenium web driver
  */
 function getDriverInstance() {
+    return new Promise(function(resolve) {
+        var driver;
 
-    var driver;
-
-    switch (browserName || '') {
-
-        case 'firefox': {
-            driver = new FireFoxDriver();
-        } break;
-
-        case 'phantomjs': {
-            driver = new PhantomJSDriver();
-        } break;
-
-        case 'chrome': {
-            driver = new ChromeDriver();
-        } break;
-
-        // try to load from file
-        default: {
-            var driverFileName = path.resolve(process.cwd(), browserName);
-
-            if (!fs.isFileSync(driverFileName)) {
-                throw new Error('Could not find driver file: ' + driverFileName);
+        switch (browserName || '') {
+            case 'safari': {
+                return otherDrivers('safari').then(resolve);
             }
-            driver = require(driverFileName)();
-        }
-    }
 
-    return driver;
+            case 'firefox': {
+                driver = new FireFoxDriver();
+            } break;
+
+            case 'phantomjs': {
+                driver = new PhantomJSDriver();
+            } break;
+
+            case 'chrome': {
+                driver = new ChromeDriver();
+            } break;
+
+            // try to load from file
+            default: {
+                var driverFileName = path.resolve(process.cwd(), browserName);
+
+                if (!fs.isFileSync(driverFileName)) {
+                    throw new Error('Could not find driver file: ' + driverFileName);
+                }
+                driver = require(driverFileName)();
+            }
+        }
+
+        return resolve(driver);
+    });
 }
 
 function consoleInfo() {
@@ -148,7 +153,11 @@ module.exports = function () {
     this.registerHandler('BeforeScenario', function(scenario) {
 
         if (!global.driver) {
-            global.driver = getDriverInstance();
+            getDriverInstance().then(function(driver) {
+                global.driver = driver;
+            });
+
+            // global.driver = getDriverInstance();
         }
     });
 
