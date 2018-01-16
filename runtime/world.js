@@ -150,11 +150,13 @@ module.exports = function () {
     this.setDefaultTimeout(global.DEFAULT_TIMEOUT);
 
     // create the driver before scenario if it's not instantiated
-    this.registerHandler('BeforeScenario', function(scenario) {
+    this.registerHandler('BeforeScenario', function(scenario, done) {
 
         if (!global.driver) {
             getDriverInstance().then(function(driver) {
                 global.driver = driver;
+
+                done();
             });
 
             // global.driver = getDriverInstance();
