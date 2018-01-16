@@ -49,6 +49,7 @@
     "merge": "1.2.0",
     "phantomjs-prebuilt": "^2.1.16",
     "require-dir": "0.3.2",
+    "selenium-drivers": "^2.1.0",
     "selenium-webdriver": "^4.0.0-alpha.1"
   },
   "devDependencies": {
