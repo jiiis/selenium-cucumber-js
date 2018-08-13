@@ -1,6 +1,6 @@
 {
   "name": "jiiis-selenium-cucumber-js",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "A fork of selenium-cucumber-js.",
   "main": "index.js",
   "scripts": {
