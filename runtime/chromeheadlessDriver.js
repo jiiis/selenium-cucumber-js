@@ -14,7 +14,7 @@ module.exports = function() {
         javascriptEnabled: true,
         acceptSslCerts: true,
         chromeOptions: {
-            args: ['start-maximized', 'headless', 'disable-gpu']
+            args: ['start-maximized', 'headless', 'disable-gpu', 'remote-debugging-port=9222']
         },
         path: chromedriver.path
     }).build();
