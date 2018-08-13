@@ -21,6 +21,7 @@ var otherDrivers = require('./otherDrivers.js');
 var FireFoxDriver = require('./firefoxDriver.js');
 var PhantomJSDriver = require('./phantomDriver.js');
 var ChromeDriver = require('./chromeDriver');
+var ChromeHeadlessDriver = require('./chromeheadlessDriver.js');
 
 /**
  * create the selenium browser based on global var set in index.js
@@ -49,6 +50,10 @@ function getDriverInstance() {
 
             case 'chrome': {
                 driver = new ChromeDriver();
+            } break;
+
+            case 'chromeheadless': {
+                driver = new ChromeHeadlessDriver();
             } break;
 
             // try to load from file
