@@ -27,7 +27,7 @@ var config = {
     page_obj_dir: './page-objects',
     shared_obj_dir: './shared-objects',
     reports_dir: './reports',
-    default_browser: 'chrome',
+    default_browser: process.env['ENQA_BROWSER'] || 'chrome',
     timeout: 10000
 };
 
